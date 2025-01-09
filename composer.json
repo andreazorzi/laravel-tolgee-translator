@@ -1,0 +1,26 @@
+{
+    "name": "andreazorzi/laravel-tolgee-translator",
+    "license": "MIT",
+    "description": "Integrate Tolgee with your Laravel project",
+    "keywords": [
+        "Andrea Zorzi",
+        "laravel",
+        "laravel-tolgee-translator",
+        "tolgee"
+    ],
+    "homepage": "https://github.com/andreazorzi/laravel-tolgee-translator",
+    "autoload": {
+        "psr-4": {
+            "LaravelTolgeeTranslator\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Andrea Zorzi",
+            "email": "info@zorziandrea.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    }
+}
