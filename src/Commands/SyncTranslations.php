@@ -19,5 +19,7 @@ class SyncTranslations extends Command
     public function handle(): void
     {
         Tolgee::sync_translations();
+        
+        $this->info('Translations synced successfully!');
     }
 }

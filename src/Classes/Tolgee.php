@@ -5,6 +5,7 @@ namespace LaravelTolgeeTranslator\Classes;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Lang;
 use LaravelTolgeeTranslator\Utils\IO;
 use Illuminate\Support\Facades\Config;
 use LaravelTolgeeTranslator\Utils\Arr as ArrayUtils;
@@ -64,6 +65,50 @@ class Tolgee
         return $formatted_translations;
     }
     
+    public static function export_keys(){
+        $base_lang_path = "lang";
+        $translations = [];
+        
+        // Prepare local .php files
+        $lang_path = $base_lang_path."/".Config::get('tolgee.locale');
+        
+        if (Config::get('tolgee.lang_subfolder')) {
+            $lang_path .= '/'.Config::get('tolgee.lang_subfolder');
+        }
+        
+        foreach (IO::get_all_files($lang_path) as $file) {
+            $translations[$file] = Arr::dot(include $file);
+        }
+        
+        if (!Config::get('tolgee.lang_subfolder')) {
+            // Prepare json files translations
+            foreach (IO::get_all_files($base_lang_path, 'json') as $file) {
+                $locale = basename($file, '.json');
+                
+                if ($locale !== Config::get('tolgee.locale')) {
+                    continue;
+                }
+
+                $translations[$file] = Arr::dot(Lang::getLoader()->load($locale, '*', '*'));
+            }
+        }
+        
+        // Remap everything into Tolgee request format
+        $import = [];
+        
+        foreach ($translations as $namespace => $keys) {
+            foreach ($keys as $key => $value) {
+                if (is_array($value)) {
+                    continue;
+                }
+
+                $import[] = ['name' => $key, 'namespace' => $namespace, 'translations' => [Config::get('tolgee.locale') => $value]];
+            }
+        }
+        
+        $response = self::request('/v2/projects/{project}/keys/import', ['keys' => $import], method: 'post');
+    }
+    
     // Make tolgee request
     public static function request($endpoint, $data = null, $query = [], $method = 'get'){
         $response = Http::withHeaders(['Accept' => 'application/json', 'X-API-Key' => Config::get('tolgee.api_key')])
@@ -71,6 +116,10 @@ class Tolgee
                     ->baseUrl(Config::get('tolgee.host'))
                     ->withQueryParameters($query)
                     ->$method($endpoint, $data);
+        
+        if ($response->failed()) {
+            throw new \Exception($response->body(), 1);
+        }
         
         return $response->json();
     }

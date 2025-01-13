@@ -67,4 +67,22 @@ class IO
         
         IO::write(Str::contains($file_path, '.json') ? json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) : $file_content, $file_path);
     }
+    
+    public static function get_all_files($path, $file_type = null) {
+        $files = [];
+
+        foreach (glob($path . '/*') as $file) {
+            if (is_dir($file)) {
+                $files = array_merge($files, self::get_all_files($file, $file_type));
+            }
+            else {
+                if (!is_null($file_type) && !Str::endsWith($file, ".".$file_type)) {
+                    continue;
+                }
+                $files[] = $file;
+            }
+        }
+
+        return $files;
+    }
 }
