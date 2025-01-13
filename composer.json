@@ -1,5 +1,6 @@
 {
     "name": "andreazorzi/laravel-tolgee-translator",
+    "version": "1.0.0",
     "license": "MIT",
     "description": "Integrate Tolgee with your Laravel project",
     "keywords": [
@@ -23,6 +24,16 @@
     "require": {
         "php": "^8.2",
         "spatie/laravel-package-tools": "^1.18",
-        "illuminate/support": "^11.37"
+        "laravel/framework": "^11.37"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelTolgeeTranslator\\LaravelTolgeeTranslatorServiceProvider"
+            ],
+            "aliases": {
+                "LaravelTolgeeTranslator": "LaravelTolgeeTranslator\\Facades\\LaravelTolgeeTranslator"
+            }
+        }
     }
 }
