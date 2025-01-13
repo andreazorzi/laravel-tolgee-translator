@@ -3,6 +3,7 @@
 namespace LaravelTolgeeTranslator;
 
 use Spatie\LaravelPackageTools\Package;
+use LaravelTolgeeTranslator\Commands\SyncTranslations;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class LaravelTolgeeTranslatorServiceProvider extends PackageServiceProvider
@@ -18,7 +19,7 @@ class LaravelTolgeeTranslatorServiceProvider extends PackageServiceProvider
             ->name('laravel-tolgee-translator')
             ->hasConfigFile('tolgee')
             ->hasCommands([
-                
+                SyncTranslations::class,
             ]);
     }
 
