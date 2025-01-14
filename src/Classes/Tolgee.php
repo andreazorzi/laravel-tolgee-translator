@@ -109,6 +109,12 @@ class Tolgee
         $response = self::request('/v2/projects/{project}/keys/import', ['keys' => $import], method: 'post');
     }
     
+    public static function delete_keys(){
+        $translations_ids = Arr::pluck(self::get_all_translations(), 'keyId');
+        
+        $response = self::request('/v2/projects/{project}/keys', ['ids' => $translations_ids], method: 'delete');
+    }
+    
     // Make tolgee request
     public static function request($endpoint, $data = null, $query = [], $method = 'get'){
         $response = Http::withHeaders(['Accept' => 'application/json', 'X-API-Key' => Config::get('tolgee.api_key')])

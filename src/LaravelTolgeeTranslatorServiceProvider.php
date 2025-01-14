@@ -3,6 +3,7 @@
 namespace LaravelTolgeeTranslator;
 
 use Spatie\LaravelPackageTools\Package;
+use LaravelTolgeeTranslator\Commands\DeleteKeys;
 use LaravelTolgeeTranslator\Commands\ExportKeys;
 use LaravelTolgeeTranslator\Commands\SyncTranslations;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -22,6 +23,7 @@ class LaravelTolgeeTranslatorServiceProvider extends PackageServiceProvider
             ->hasCommands([
                 SyncTranslations::class,
                 ExportKeys::class,
+                DeleteKeys::class,
             ]);
     }
 
