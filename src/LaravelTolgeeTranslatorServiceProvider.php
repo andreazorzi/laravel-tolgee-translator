@@ -24,7 +24,17 @@ class LaravelTolgeeTranslatorServiceProvider extends PackageServiceProvider
                 SyncTranslations::class,
                 ExportKeys::class,
                 DeleteKeys::class,
-            ]);
+            ])
+            ->hasViews();
+    }
+    
+    public function boot()
+    {
+        parent::boot();
+
+        // Load package views
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'tolgee');
+        $this->loadRoutesFrom(__DIR__ . '/routes/requests.php');
     }
 
 }
