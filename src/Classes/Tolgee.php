@@ -115,6 +115,12 @@ class Tolgee
         $response = self::request('/v2/projects/{project}/keys', ['ids' => $translations_ids], method: 'delete');
     }
     
+    public static function get_translation_link($key){
+        preg_match('/^[^\.]+\.(.+)/', $key, $matches);
+        
+        return Config::get('tolgee.host').'/projects/'.Config::get('tolgee.project_id').'/translations?search='.$matches[1];
+    }
+    
     // Make tolgee request
     public static function request($endpoint, $data = null, $query = [], $method = 'get'){
         $response = Http::withHeaders(['Accept' => 'application/json', 'X-API-Key' => Config::get('tolgee.api_key')])
