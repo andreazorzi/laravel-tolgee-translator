@@ -14,16 +14,20 @@ if (!function_exists('tolgee')) {
      */
     function tolgee(string $key, array $replace = [], ?string $locale = null): string
     {
-        $is_local = config('app.env') === 'local';
-        
         if(!empty(config("tolgee.lang_subfolder"))){
             $key = config("tolgee.lang_subfolder").'/'.$key;
         }
         
+        $translation = __($key, $replace, $locale);
+        
+        if(config('app.env') !== 'local' && !config('tolgee.sync_on_production')){
+            return $translation;
+        }
+        
         return '
-            <a id="tolgee-'.Str::slug($key).'" href="'.Tolgee::get_translation_link($key).'" target="_blank" class="tolgee-link '.($is_local ? 'tolgee-link-local' : '').'">
+            <a id="tolgee-'.Str::slug($key).'" href="'.Tolgee::get_translation_link($key).'" target="_blank" class="tolgee-link">
                 <span title="'.$key.'">
-                    '.__($key, $replace, $locale).'
+                    '.$translation.'
                     
                     <img src="https://docs.tolgee.io/img/tolgeeLogo.svg" />
                 </span>
