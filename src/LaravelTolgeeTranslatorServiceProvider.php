@@ -2,6 +2,7 @@
 
 namespace LaravelTolgeeTranslator;
 
+use Illuminate\Support\Facades\Blade;
 use Spatie\LaravelPackageTools\Package;
 use LaravelTolgeeTranslator\Commands\DeleteKeys;
 use LaravelTolgeeTranslator\Commands\ExportKeys;
@@ -35,6 +36,10 @@ class LaravelTolgeeTranslatorServiceProvider extends PackageServiceProvider
         // Load package views
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'tolgee');
         $this->loadRoutesFrom(__DIR__ . '/routes/requests.php');
+        
+        Blade::directive('tolgee', function ($key) {
+            return "<?php echo tolgee($key); ?>";
+        });
     }
 
 }
