@@ -32,31 +32,35 @@ if (!function_exists('tolgee')) {
                 #tolgee-'.Str::slug($key).'{
                     color: inherit;
                     text-decoration: none;
-                    padding: 3px 10px;
-                    margin-top: -4px;
-                    margin-left: -10px;
-                    border: 1px solid transparent;
-                    
-                    border-radius: 10px;
-                    transition: all 0.3s;
-                    -webkit-transition: all 0.3s;
-                    -moz-transition: all 0.3s;
-                    -o-transition: all 0.3s;
-                    
-                    --color: #ec407a;
-                    
-                    &:hover{
-                        border: 1px solid var(--color);
-                        background-color: color-mix(in srgb, var(--color), transparent 95%);
+                
+                    & span{
+                        display: inline-block;
+                        padding: 3px 10px;
+                        margin-top: -4px;
+                        margin-left: -10px;
+                        border: 1px solid transparent;
+                        
+                        border-radius: 10px;
+                        transition: all 0.3s;
+                        -webkit-transition: all 0.3s;
+                        -moz-transition: all 0.3s;
+                        -o-transition: all 0.3s;
+                        
+                        --color: #ec407a;
+                        
+                        &:hover{
+                            border: 1px solid var(--color);
+                            background-color: color-mix(in srgb, var(--color), transparent 95%);
+                            
+                            & img{
+                                display: inline-block !important;
+                            }
+                        }
                         
                         & img{
-                            display: inline-block !important;
+                            display: none;
+                            width: 20px;
                         }
-                    }
-                    
-                    & img{
-                        display: none;
-                        width: 20px;
                     }
                 }
             </style>
