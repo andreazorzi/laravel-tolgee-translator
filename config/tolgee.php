@@ -22,7 +22,7 @@ return [
     'locale' => env('TOLGEE_LOCALE', 'en'),
     
     /**
-     * Override base locale translations files.
+     * Overwrite base locale translations files.
      */
     'override' => env('TOLGEE_OVERRIDE', false),
     
@@ -37,10 +37,4 @@ return [
      * Ex: app/lang/{locale}/tolgee -> "tolgee"
      */
     'lang_subfolder' => env('TOLGEE_LANG_SUBFOLDER'),
-    
-    /*
-     * Set a specific subfolder for language files
-     * Ex: app/lang/{locale}/tolgee -> "tolgee"
-     */
-    'sync_on_production' => env('TOLGEE_SYNC_ON_PRODUCTION', false),
 ];
