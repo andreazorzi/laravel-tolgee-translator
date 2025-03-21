@@ -9,7 +9,7 @@ class DeleteKeys extends Command
 {
     protected $signature = 'tolgee:delete-keys';
 
-    protected $description = 'Delete all keys from tolgee';
+    protected $description = 'Delete all keys from the tolgee project.';
 
     public function __construct()
     {

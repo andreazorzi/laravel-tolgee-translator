@@ -9,7 +9,7 @@ class ExportKeys extends Command
 {
     protected $signature = 'tolgee:export-keys';
 
-    protected $description = 'Export all project translations keys and save them to tolgee, existing keys will not be overwritten';
+    protected $description = 'Export all project translations keys and save them into tolgee project, existing keys will not be overwritten.';
 
     public function __construct()
     {
