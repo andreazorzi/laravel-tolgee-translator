@@ -40,6 +40,12 @@ class LaravelTolgeeTranslatorServiceProvider extends PackageServiceProvider
         Blade::directive('tolgee', function ($key) {
             return "<?php echo tolgee($key); ?>";
         });
+        
+        Blade::directive('tolgeesync', function () {
+            if(!empty(config("tolgee.project_id"))){
+                return view('tolgee::components.sync-translations');
+            }
+        });
     }
 
 }
