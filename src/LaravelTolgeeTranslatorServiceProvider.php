@@ -37,8 +37,8 @@ class LaravelTolgeeTranslatorServiceProvider extends PackageServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'tolgee');
         $this->loadRoutesFrom(__DIR__ . '/routes/requests.php');
         
-        Blade::directive('tolgee', function ($key) {
-            return "<?php echo tolgee($key); ?>";
+        Blade::directive('tolgee', function (string $key) {
+            return tolgee(trim($key, '"'));
         });
         
         Blade::directive('tolgeesync', function () {
