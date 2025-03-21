@@ -97,7 +97,7 @@ The html string provide a direct link to the tolgee translation
     <img src="./resources/media/tolgee.webp" alt="logo" width="70%"/>
 </p>
 
-### Sync Buton
+### Sync Button
 It is possible to insert a button to update translations directly on the page under testing
 ```blade
 @tolgeesync()
