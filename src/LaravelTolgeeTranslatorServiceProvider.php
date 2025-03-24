@@ -2,6 +2,7 @@
 
 namespace LaravelTolgeeTranslator;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
 use Spatie\LaravelPackageTools\Package;
 use LaravelTolgeeTranslator\Commands\DeleteKeys;
@@ -41,11 +42,14 @@ class LaravelTolgeeTranslatorServiceProvider extends PackageServiceProvider
             return tolgee(trim($key, '"'));
         });
         
-        Blade::directive('tolgeesync', function () {
-            if(!empty(config("tolgee.project_id"))){
-                return view('tolgee::components.sync-translations');
-            }
-        });
+        /*
+         * This directive trigger a bug where the view that contain the directive will duplicated
+         */
+        // Blade::directive('tolgeesync', function () {
+        //     if(!empty(config("tolgee.project_id"))){
+        //         return View::make('tolgee::components.sync-translations');
+        //     }
+        // });
     }
 
 }

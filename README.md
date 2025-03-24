@@ -100,5 +100,5 @@ The html string provide a direct link to the tolgee translation
 ### Sync Button
 It is possible to insert a button to update translations directly on the page under testing
 ```blade
-@tolgeesync()
+<x-tolgee::sync-translations />
 ```
