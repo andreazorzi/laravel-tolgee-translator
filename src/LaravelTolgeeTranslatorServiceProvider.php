@@ -39,7 +39,7 @@ class LaravelTolgeeTranslatorServiceProvider extends PackageServiceProvider
         $this->loadRoutesFrom(__DIR__ . '/routes/requests.php');
         
         Blade::directive('tolgee', function (string $key) {
-            return tolgee(trim($key, '"'));
+            return "<?php echo tolgee($key); ?>";
         });
         
         /*
