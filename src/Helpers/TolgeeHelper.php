@@ -12,7 +12,7 @@ if (!function_exists('tolgee')) {
      * @param string|null $locale
      * @return string
      */
-    function tolgee(string $key, array $replace = [], ?string $locale = null): string
+    function tolgee(string $key, array $replace = [], ?string $locale = null, bool $force_plain_text = false): string
     {
         if(!empty(config("tolgee.lang_subfolder"))){
             $key = config("tolgee.lang_subfolder").'/'.$key;
@@ -20,7 +20,7 @@ if (!function_exists('tolgee')) {
         
         $translation = __($key, $replace, $locale);
         
-        if(config('app.env') !== 'local' && !config('tolgee.sync_on_production')){
+        if((config('app.env') !== 'local' && !config('tolgee.sync_on_production')) || $force_plain_text){
             return $translation;
         }
         
