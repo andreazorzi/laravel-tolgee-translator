@@ -1,6 +1,6 @@
 {
     "name": "andreazorzi/laravel-tolgee-translator",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "license": "MIT",
     "description": "Integrate Tolgee with your Laravel project",
     "keywords": [
