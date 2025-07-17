@@ -36,8 +36,10 @@ if (!function_exists('tolgee')) {
                     text-decoration: none;
                     display: inline-block;
                     padding: 3px 10px;
+                    padding-right: 0px;
                     margin-top: -4px;
                     margin-left: -10px;
+                    margin-right: -4px;
                     border: 1px solid transparent;
                     cursor: pointer;
                     
