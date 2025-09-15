@@ -32,6 +32,11 @@ return [
      */
     'accepted_states' => explode(",", env('TOLGEE_ACCEPTED_STATES', 'REVIEWED')),
     
+    /**
+     * Files to ignore during sync.
+     */
+    'ignore_files' => explode(",", env('TOLGEE_IGNORE_FILES', '')),
+    
     /*
      * Set a specific subfolder for language files
      * Ex: app/lang/{locale}/tolgee -> "tolgee"

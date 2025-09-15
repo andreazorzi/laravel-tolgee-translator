@@ -46,6 +46,11 @@ composer require andreazorzi/laravel-tolgee-translator
  * Ex: REVIEWED,DISABLED,UNTRANSLATED,TRANSLATED
  */
 'accepted_states' => explode(",", env('TOLGEE_ACCEPTED_STATES', 'REVIEWED')),
+    
+/**
+ * Files to ignore during sync.
+ */
+'ignore_files' => explode(",", env('TOLGEE_IGNORE_FILES', '')),
 
 /*
  * Set a specific subfolder for language files

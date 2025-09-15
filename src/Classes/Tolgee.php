@@ -77,6 +77,10 @@ class Tolgee
         }
         
         foreach (IO::get_all_files($lang_path) as $file) {
+            $filename = str_replace($lang_path.'/', '', $file);
+            
+            if(in_array($filename, Config::get('tolgee.ignore_files'))) continue;
+            
             $translations[$file] = Arr::dot(include $file);
         }
         
