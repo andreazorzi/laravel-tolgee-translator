@@ -32,7 +32,7 @@ if (!function_exists('tolgee')) {
             <span id="tolgee-'.Str::slug($key).'" title="Alt + Click to open this translation on Tolgee" onclick="if(event.altKey){ window.open(\''.Tolgee::get_translation_link($key).'\', \'_blank\'); return false; }">
                 '.$translation.'
                 
-                <img src="https://docs.tolgee.io/img/tolgeeLogo.svg" />
+                <img class="tolgee-logo" src="https://docs.tolgee.io/img/tolgeeLogo.svg" />
             </span>
             <style>
                 #tolgee-'.Str::slug($key).'{
@@ -64,7 +64,7 @@ if (!function_exists('tolgee')) {
                         }
                     }
                     
-                    & img{
+                    & img.tolgee-logo{
                         display: none;
                         width: 20px;
                     }
